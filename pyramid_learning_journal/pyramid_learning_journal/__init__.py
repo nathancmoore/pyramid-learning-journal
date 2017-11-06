@@ -10,5 +10,6 @@ def main(global_config, **settings):
     config.include('pyramid_jinja2')
     config.include('.views')
     config.include('.routes')
+    config.include('.models')
     config.scan()
     return config.make_wsgi_app()
