@@ -1,12 +1,14 @@
+"""Define the main function, which kicks off this whole ball of wax."""
+
+
 from pyramid.config import Configurator
 
 
 def main(global_config, **settings):
-    """ This function returns a Pyramid WSGI application.
-    """
+    """Start the app."""
     config = Configurator(settings=settings)
     config.include('pyramid_jinja2')
-    config.include('.models')
+    config.include('.views')
     config.include('.routes')
     config.scan()
     return config.make_wsgi_app()
