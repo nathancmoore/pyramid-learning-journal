@@ -2,6 +2,7 @@
 
 from pyramid.view import view_config
 from ..models.mymodel import MyModel
+from pyramid.HTTPException import HTTPFound, HTTPBadRequest
 
 
 @view_config(route_name="home", renderer="pyramid_learning_journal:templates/index.jinja2")
@@ -26,6 +27,16 @@ def detail_view(request):
 @view_config(route_name="create", renderer="pyramid_learning_journal:templates/new.jinja2")
 def create_view(request):
     """Handle a request for the create view."""
+    if request.method == "POST":
+        if not all([text in request.POST for text in ['title', 'body']]):
+            raise HTTPBadRequest
+        new_entry = MyModel(
+            title=request.POST['title'],
+            body=request.POST['body']
+        )
+        request.dbsession.add(new_entry)
+        return HTTPFound(request.route_url('home'))
+
     return {}
 
 
