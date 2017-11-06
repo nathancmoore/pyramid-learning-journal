@@ -1,12 +1,13 @@
 """Define functions to handle my routes."""
 
 from pyramid.view import view_config
-from pyramid_learning_journal.data.entries import entries
+from .models.mymodel import MyModel
 
 
 @view_config(route_name="home", renderer="pyramid_learning_journal:templates/index.jinja2")
 def list_view(request):
     """Handle a request for the  list view."""
+    entries = request.dbsession.query(MyModel).all()
     return {
         "entries": entries
     }
@@ -16,7 +17,7 @@ def list_view(request):
 def detail_view(request):
     """Handle a request for the detail view."""
     entry_id = int(request.matchdict['id'])
-    entry = list(filter(lambda entry: entry['id'] == entry_id, entries))[0]
+    entry = request.dbsession.query(MyModel).get(entry_id)
     return {
         "entry": entry
     }
@@ -32,7 +33,7 @@ def create_view(request):
 def update_view(request):
     """Handle a request for the update view."""
     entry_id = int(request.matchdict['id'])
-    entry = list(filter(lambda entry: entry['id'] == entry_id, entries))[0]
+    entry = request.dbsession.query(MyModel).get(entry_id)
     return {
         "entry": entry
     }
