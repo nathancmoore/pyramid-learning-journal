@@ -1,31 +1,34 @@
 """Define functions to handle my routes."""
 
-from pyramid.response import Response
-import os
-
-HERE = os.path.abspath(__file__)
-STATIC = os.path.join(os.path.dirname(os.path.dirname(HERE)))
+from pyramid.view import view_config
+from .data import entries
 
 
+@view_config(route_name="home", renderer="pyramid_learning_journal:templates/index.jinja2")
 def list_view(request):
     """Handle a request for the  list view."""
-    with open(os.path.join(STATIC, 'templates/index.html')) as file:
-        return Response(file.read())
+    return {
+        "entries": entries
+    }
 
 
+@view_config(route_name="details", renderer="pyramid_learning_journal:templates/details.jinja2")
 def detail_view(request):
     """Handle a request for the detail view."""
-    with open(os.path.join(STATIC, 'templates/detail.html')) as file:
-        return Response(file.read())
+    return {
+        "entries": entries
+    }
 
 
+@view_config(route_name="create", renderer="pyramid_learning_journal:templates/new.jinja2")
 def create_view(request):
     """Handle a request for the create view."""
-    with open(os.path.join(STATIC, 'templates/new.html')) as file:
-        return Response(file.read())
+    return {}
 
 
+@view_config(route_name="update", renderer="pyramid_learning_journal:templates/edit.jinja2")
 def update_view(request):
     """Handle a request for the update view."""
-    with open(os.path.join(STATIC, 'templates/edit.html')) as file:
-        return Response(file.read())
+    return {
+        "entries": entries
+    }
