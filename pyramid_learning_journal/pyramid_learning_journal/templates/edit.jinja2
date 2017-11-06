@@ -1,0 +1,10 @@
+{% extends "layout.jinja2" %}
+        {% block content %}
+         <form>
+            <table>
+                <tr><input type="text" placeholder="Title" value="{{ entry.title }}"></tr>
+                <tr><input type="text" placeholder="Body" id="body_entry" value ="{{ entry.body }}"></tr>
+                <tr><input type="submit" value="Submit"></tr>
+            </table>
+        </form>
+        {% endblock %}
