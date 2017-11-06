@@ -2,7 +2,7 @@
 
 from pyramid.view import view_config
 from ..models.mymodel import MyModel
-from pyramid.HTTPException import HTTPFound, HTTPBadRequest
+from pyramid.httpexception import HTTPFound, HTTPBadRequest
 
 
 @view_config(route_name="home", renderer="pyramid_learning_journal:templates/index.jinja2")
