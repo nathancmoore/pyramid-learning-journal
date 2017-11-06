@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title>
+            PYRAMID LEARNING JOURNAL
+        </title>
+        <link rel="stylesheet" type="text/css" href="../static/index.css">
+    </head>
+    <body>
+        <h1>PYRAMID LEARNING JOURNAL</h1>
+
+        <nav>
+            <h3><a href="{{ request.route_url('create')}}">New Entry</a></h3>
+        </nav>
+
+        <hr></hr>
+
+        <div class="journal_entry">
+            {% block content %}{% endblock %}
+        </div>
+
+        </div>
+
+        <hr></hr>
+        <footer>THIS IS THE FOOTER</footer>
+    </body>
+</html>
