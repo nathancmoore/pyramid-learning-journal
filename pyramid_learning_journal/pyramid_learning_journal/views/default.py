@@ -31,6 +31,8 @@ def create_view(request):
 @view_config(route_name="update", renderer="pyramid_learning_journal:templates/edit.jinja2")
 def update_view(request):
     """Handle a request for the update view."""
+    entry_id = int(request.matchdict['id'])
+    entry = list(filter(lambda entry: entry['id'] == entry_id, entries))[0]
     return {
-        "entries": entries
+        "entry": entry
     }

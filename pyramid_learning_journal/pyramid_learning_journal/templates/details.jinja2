@@ -1,10 +1,10 @@
 {% extends "layout.jinja2" %}
 
         {% block content %}
-        <h3><a href="{{ request.route_url('update')}}">Edit</a></h3>
+        <h3><a href="{{ request.route_url('update', id=entry.id)}}">Edit</a></h3>
         <div class="journal_entry">
             <h2 class="entry_title">{{entry.title}}</h2>
-            <p class="entry_date">{{entry.data}}</p>
+            <p class="entry_date">{{entry.date}}</p>
             <p class="entry_body">{{entry.body}}</p>
         </div>
         {% endblock %}
