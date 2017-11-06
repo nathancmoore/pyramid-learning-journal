@@ -3,7 +3,7 @@
         {% block content %}
             {% for entry in entries %}
         <div class="journal_entry">
-            <h2 class="entry_title">{{entry.title}}</h2>
+            <h2 class="entry_title"><a href="{{request.route_url('update', id=entry.id)}}">{{entry.title}}</a></h2>
             <p class="entry_date">{{entry.data}}</p>
         </div>
         {% endfor %}

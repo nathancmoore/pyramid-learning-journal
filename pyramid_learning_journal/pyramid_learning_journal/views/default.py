@@ -1,7 +1,7 @@
 """Define functions to handle my routes."""
 
 from pyramid.view import view_config
-from .data import entries
+from pyramid_learning_journal.data.entries import entries
 
 
 @view_config(route_name="home", renderer="pyramid_learning_journal:templates/index.jinja2")
@@ -15,8 +15,10 @@ def list_view(request):
 @view_config(route_name="details", renderer="pyramid_learning_journal:templates/details.jinja2")
 def detail_view(request):
     """Handle a request for the detail view."""
+    entry_id = int(request.matchdict['id'])
+    entry = list(filter(lambda entry: entry['id'] == entry_id, entries))[0]
     return {
-        "entries": entries
+        "entry": entry
     }
 
 
