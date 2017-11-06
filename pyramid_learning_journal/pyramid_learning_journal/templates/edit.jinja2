@@ -1,10 +1,10 @@
 {% extends "layout.jinja2" %}
+
         {% block content %}
-         <form>
-            <table>
-                <tr><input type="text" placeholder="Title" value="{{ entry.title }}"></tr>
-                <tr><input type="text" placeholder="Body" id="body_entry" value ="{{ entry.body }}"></tr>
-                <tr><input type="submit" value="Submit"></tr>
-            </table>
-        </form>
+        <h3><a href="{{ request.route_url('update')}}">Edit</a></h3>
+        <div class="journal_entry">
+            <h2 class="entry_title">{{entry.title}}</h2>
+            <p class="entry_date">{{entry.data}}</p>
+            <p class="entry_body">{{entry.body}}</p>
+        </div>
         {% endblock %}
