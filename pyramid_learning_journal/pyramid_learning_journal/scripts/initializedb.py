@@ -1,7 +1,7 @@
 import os
 import sys
 import transaction
-from .data.entries import entries
+from ..data.entries import entries
 
 from pyramid.paster import (
     get_appsettings,

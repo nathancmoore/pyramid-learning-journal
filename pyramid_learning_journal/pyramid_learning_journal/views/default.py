@@ -1,13 +1,13 @@
 """Define functions to handle my routes."""
 
 from pyramid.view import view_config
-from .models.mymodel import MyModel
+from ..models.mymodel import MyModel
 
 
 @view_config(route_name="home", renderer="pyramid_learning_journal:templates/index.jinja2")
 def list_view(request):
     """Handle a request for the  list view."""
-    entries = request.dbsession.query(MyModel).all()
+    entries = request.dbsession.query(MyModel).order_by(MyModel.date.desc()).all()
     return {
         "entries": entries
     }
