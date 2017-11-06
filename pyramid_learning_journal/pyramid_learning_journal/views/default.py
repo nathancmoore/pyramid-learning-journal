@@ -45,6 +45,16 @@ def update_view(request):
     """Handle a request for the update view."""
     entry_id = int(request.matchdict['id'])
     entry = request.dbsession.query(MyModel).get(entry_id)
-    return {
-        "entry": entry
-    }
+
+    if request.method == "GET":
+        return{
+            "title": "Update",
+            "entry": entry
+        }
+
+    if request.method == "POST":
+        entry.title = request.POST['title']
+        entry.body = request.POST['body']
+        request.dbsession.add(entry)
+        request.dbsession.flush()
+        return HTTPFound(request.route_url('details', id=entry.id))
