@@ -24,7 +24,7 @@ def detail_view(request):
     }
 
 
-@view_config(route_name="create", renderer="pyramid_learning_journal:templates/new.jinja2")
+@view_config(route_name="create", renderer="pyramid_learning_journal:templates/new.jinja2", permission="secret")
 def create_view(request):
     """Handle a request for the create view."""
     if request.method == "POST":
@@ -40,7 +40,7 @@ def create_view(request):
     return {}
 
 
-@view_config(route_name="update", renderer="pyramid_learning_journal:templates/edit.jinja2")
+@view_config(route_name="update", renderer="pyramid_learning_journal:templates/edit.jinja2", permission="secret")
 def update_view(request):
     """Handle a request for the update view."""
     entry_id = int(request.matchdict['id'])
