@@ -3,6 +3,7 @@ import sys
 import transaction
 from ..data.entries import entries
 
+
 from pyramid.paster import (
     get_appsettings,
     setup_logging,
@@ -43,12 +44,13 @@ def main(argv=sys.argv):
 
     with transaction.manager:
         dbsession = get_tm_session(session_factory, transaction.manager)
-        entries_list = []
+
+        many_entries = []
         for entry in entries:
             new_post = MyModel(
                 title=entry['title'],
-                creation_date=entry['creation_date'],
+                date=entry['date'],
                 body=entry['body']
             )
-            entries_list.append(new_post)
-        dbsession.add_all(entries_list)
+            many_entries.append(new_post)
+        dbsession.add_all(many_entries)

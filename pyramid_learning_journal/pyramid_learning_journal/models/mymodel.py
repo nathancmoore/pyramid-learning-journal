@@ -13,7 +13,7 @@ class MyModel(Base):
     def __init__(self, *args, **kwargs):
         """Modify the init method to do more things."""
         super(MyModel, self).__init__(*args, **kwargs)
-        self.creation_date = datetime.now()
+        self.date = datetime.now()
 
     __tablename__ = 'entries'
     id = Column(Integer, primary_key=True)
