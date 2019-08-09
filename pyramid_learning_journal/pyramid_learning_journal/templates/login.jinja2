@@ -1,0 +1,12 @@
+{% extends "layout.jinja2" %}
+
+{% block content %}
+        <form method="POST">
+            <input type="hidden" name="csrf_token" value="{{ request.session.get_csrf_token() }}"
+            <table>
+                <tr><input type="text" id="username"></tr>
+                <tr><input type="password" id="password"></tr>
+                <tr><input type="submit" value="Submit"></tr>
+            </table>
+        </form>
+        {% endblock %}
